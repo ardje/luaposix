@@ -1,0 +1,32 @@
+From: Enrico Tassi <gareuselesinge@debian.org>
+Date: Sun, 30 Jun 2013 11:42:21 +0200
+Subject: Fix build on hurd-i386
+
+See http://www.debian.org/ports/hurd/
+---
+ ext/posix/posix.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/ext/posix/posix.c b/ext/posix/posix.c
+index d07648c..a4b1268 100644
+--- a/ext/posix/posix.c
++++ b/ext/posix/posix.c
+@@ -11,6 +11,9 @@
+ * With contributions by Roberto Ierusalimschy.
+ * With documentation from Steve Donovan 2012
+ */
++#ifdef __GNU__
++#define _GNU_SOURCE
++#endif
+ 
+ #include <config.h>
+ 
+@@ -692,6 +695,8 @@ static int Pgetcwd(lua_State *L)
+ 	}
+ #else
+ 	long size = pathconf(".", _PC_PATH_MAX);
++	if (size == -1)
++		return pusherror(L, "pathconf");
+ 	void *ud;
+ 	lua_Alloc lalloc = lua_getallocf(L, &ud);
+ 	char *b, *ret;

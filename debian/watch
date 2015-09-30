@@ -1,0 +1,5 @@
+# test this watch file using:
+# uscan --watchfile debian/watch --upstream-version 0.0.1 --package lua-posix
+#
+version=3
+https://github.com/rrthomas/luaposix/downloads .*/luaposix-(.+).tar.gz
