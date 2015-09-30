@@ -1,3 +1,9 @@
+lua-posix (33.3.1-1) unstable; urgency=medium
+
+  * New upstream
+
+ -- Ard van Breemen <ard@kwaak.net>  Wed, 30 Sep 2015 16:24:25 +0200
+
 lua-posix (31-2) unstable; urgency=medium
 
   * Sort examples alphabetically when generating the doc (Closes: #743920)
